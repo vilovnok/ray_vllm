@@ -4,3 +4,5 @@
 ```sh
 bash setup_and_run.sh
 ```
+
+![log](assets/log.png)
