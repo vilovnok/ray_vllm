@@ -18,7 +18,7 @@ logging_config:
 applications:
   - name: app
     route_prefix: /
-    import_path: src.main:llm_app
+    import_path: src.vllm_serve:llm_app
     deployments:
       - name: VLLMDeployment
         runtime_env:
@@ -29,11 +29,11 @@ applications:
             VLLM_ATTENTION_BACKEND: "TRITON_ATTN"
         ray_actor_options:
           num_cpus: 4
-          num_gpus: 0.001
+          num_gpus: 2
         user_config:
           engine_args:
-            model: RedHatAI/Meta-Llama-3.1-8B-Instruct-FP8
-            served_model_name: llama
+            model: Qwen/Qwen2.5-1.5B-Instruct
+            served_model_name: qwen
             trust_remote_code: true
             tensor_parallel_size: 1
             max_model_len: 32000

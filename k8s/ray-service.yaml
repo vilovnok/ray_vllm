@@ -10,14 +10,14 @@ spec:
         env_vars:
           VLLM_TEST_FORCE_FP8_MARLIN: "1"
       route_prefix: /
-      import_path: src.main:deployment
+      import_path: src.vllm_serve:deployment
       deployments:
         - name: VLLMDeployment
 
           autoscaling_config:
             target_ongoing_requests: 5
-            min_replicas: 1
-            max_replicas: 2
+            min_replicas: 2
+            max_replicas: 4
             max_ongoing_requests: 10
 
           ray_actor_options:
@@ -26,8 +26,8 @@ spec:
 
           user_config:
             engine_args:
-              model: neuralmagic/Meta-Llama-3.1-8B-Instruct-FP8
-              served_model_name: Llama-3
+              model: Qwen/Qwen2.5-1.5B-Instruct
+              served_model_name: Qwen2.5
               download_dir: models/
               trust_remote_code: true
               tensor_parallel_size: 1
